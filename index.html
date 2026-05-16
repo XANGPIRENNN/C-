@@ -2,22 +2,15 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>文档</title>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 <body>
-    <div id="content">加载中...</div>
+    <div id="content"></div>
     <script>
         fetch('README.md')
-            .then(res => {
-                if (!res.ok) throw new Error('找不到 README.md');
-                return res.text();
-            })
+            .then(res => res.text())
             .then(md => {
                 document.getElementById('content').innerHTML = marked.parse(md);
-            })
-            .catch(err => {
-                document.getElementById('content').innerHTML = '错误：' + err.message;
             });
     </script>
 </body>
